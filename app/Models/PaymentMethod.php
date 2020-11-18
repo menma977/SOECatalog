@@ -37,6 +37,6 @@ class PaymentMethod extends Model
 
   public function payment()
   {
-    $this->hasOne(Payment::class, 'payment_method_id', 'id');
+    return $this->belongsTo(Payment::class, 'payment_method_id', 'id');
   }
 }

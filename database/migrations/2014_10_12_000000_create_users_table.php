@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
   {
     Schema::create('users', function (Blueprint $table) {
       $table->id();
-      $table->bigInteger('role');
+      $table->bigInteger('role_id');
       $table->string('email')->unique()->index();
       $table->string('username')->unique()->index();
       //$table->timestamp('email_verified_at')->nullable();

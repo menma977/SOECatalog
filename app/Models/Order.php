@@ -81,20 +81,21 @@ class Order extends Model
 
   public function product()
   {
-    $this->hasOne(Product::class, 'id', 'product_id');
+    return $this->belongsTo(Product::class, 'id');
   }
 
   public function user()
   {
-    $this->hasOne(User::class, 'id', 'user_id');
+    return $this->belongsTo(User::class, 'id');
   }
 
   public function payment()
   {
-    $this->hasMany(Payment::class, 'order_id', 'id');
+    return $this->hasMany(Payment::class, 'order_id', 'id');
   }
 
-  public function promotion() {
-    $this->hasOne(Promotion::class, 'id', 'promotion_id');
+  public function promotion()
+  {
+    return $this->hasOne(Promotion::class, 'id', 'promotion_id');
   }
 }

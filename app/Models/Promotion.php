@@ -40,6 +40,6 @@ class Promotion extends Model
 
   public function order()
   {
-    $this->hasOne(Order::class, 'promotion_id', 'id');
+    return $this->belongsTo(Order::class, 'promotion_id', 'id');
   }
 }

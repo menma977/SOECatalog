@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
     $profile->save();
 
     $user = new User();
-    $user->role = 1;
+    $user->role_id = 1;
     $user->profile_id = $profile->id;
     $user->email = "com.owl.minerva@gmail.com";
     $user->username = "menma977";
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
     $profile->save();
 
     $user = new User();
-    $user->role = 2;
+    $user->role_id = 2;
     $user->profile_id = $profile->id;
     $user->email = "ikanurfallah.use@gmail.com";
     $user->username = "ika";

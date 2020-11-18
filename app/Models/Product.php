@@ -56,21 +56,21 @@ class Product extends Model
 
   public function category()
   {
-    $this->hasOne(Category::class, 'id', 'category_id');
+    return $this->hasOne(Category::class, 'id', 'category_id');
   }
 
   public function price()
   {
-    $this->hasOne(Price::class, 'product_id', 'id');
+    return $this->hasOne(Price::class, 'product_id', 'id');
   }
 
   public function order()
   {
-    $this->hasOne(Order::class, 'product_id', 'id');
+    return $this->hasMany(Order::class, 'product_id', 'id');
   }
 
   public function image()
   {
-    $this->hasMany(ProductImage::class, 'product_id', 'id');
+    return $this->hasMany(ProductImage::class, 'product_id', 'id');
   }
 }

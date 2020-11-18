@@ -12,7 +12,7 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App\Models
  * @property integer id
- * @property integer role
+ * @property integer role_id
  * @property string email
  * @property string username
  * @property string password
@@ -26,6 +26,8 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
   use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
+
+  protected $with = ['role', 'profile'];
 
   /**
    * The attributes that are mass assignable.
@@ -49,7 +51,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
-    'role',
+    'role_id',
     'profile_id',
     'password',
     'remember_token',
@@ -68,16 +70,16 @@ class User extends Authenticatable
 
   public function role()
   {
-    $this->hasOne(Role::class, 'id', 'role');
+    return $this->hasMany(Role::class, 'id', 'role_id');
   }
 
   public function profile()
   {
-    $this->hasOne(Profile::class, 'id', 'profile_id');
+    return $this->hasOne(Profile::class, 'id', 'profile_id');
   }
 
   public function order()
   {
-    $this->hasOne(Order::class, 'user_id', 'id');
+    return $this->hasOne(Order::class, 'user_id', 'id');
   }
 }

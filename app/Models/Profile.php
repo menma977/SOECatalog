@@ -18,6 +18,8 @@ class Profile extends Model
 {
   use HasFactory, SoftDeletes;
 
+  protected $with = ['user'];
+
   /**
    * The attributes that are mass assignable.
    *
@@ -29,7 +31,8 @@ class Profile extends Model
     'address',
   ];
 
-  public function user() {
-    $this->hasOne(User::class, 'profile_id', 'id');
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'profile_id');
   }
 }

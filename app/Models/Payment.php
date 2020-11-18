@@ -54,11 +54,11 @@ class Payment extends Model
 
   public function order()
   {
-    $this->hasOne(Order::class, 'id', 'order_id');
+    return $this->belongsTo(Order::class, 'id');
   }
 
   public function paymentMethod()
   {
-    $this->hasOne(PaymentMethod::class, 'id', 'payment_method_id');
+    return $this->hasOne(PaymentMethod::class, 'id', 'payment_method_id');
   }
 }
