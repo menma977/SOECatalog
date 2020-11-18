@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
       $table->bigInteger('product_id')->index()->nullable();
       $table->decimal('item_total', 10, 2)->default(0.00);
       $table->decimal('total', 10, 2)->default(0.00);
-      $table->boolean('discount')->default(FALSE);
+      $table->bigInteger('promotion_id')->index()->nullable();
       $table->decimal('adjustment_total', 10, 2)->default(0.00);
       $table->bigInteger('user_id')->index()->nullable();
       $table->date('completed_at')->index()->nullable();
@@ -36,7 +36,7 @@ class CreateOrdersTable extends Migration
       $table->integer('item_count')->nullable()->default(0);
       $table->date('approved_at')->nullable();
       $table->boolean('confirmation_delivered')->default(FALSE);
-      $table->integer('canceled_at')->nullable();
+      $table->date('canceled_at')->nullable();
       $table->timestamps();
     });
   }

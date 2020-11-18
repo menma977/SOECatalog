@@ -12,6 +12,7 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App\Models
  * @property integer id
+ * @property integer role
  * @property string email
  * @property string username
  * @property string password
@@ -19,6 +20,8 @@ use Laravel\Passport\HasApiTokens;
  * @property string phone
  * @property integer profile_id
  * @property boolean suspended
+ * @property string created_at
+ * @property string updated_at
  */
 class User extends Authenticatable
 {
@@ -36,6 +39,8 @@ class User extends Authenticatable
     'avatar',
     'phone',
     'suspended',
+    'created_at',
+    'updated_at',
   ];
 
   /**
@@ -44,6 +49,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
+    'role',
     'profile_id',
     'password',
     'remember_token',
@@ -54,13 +60,24 @@ class User extends Authenticatable
    *
    * @var array
    */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
+  /**
+   * protected $casts = [
+   * 'email_verified_at' => 'datetime',
+   * ];
+   */
 
+  public function role()
+  {
+    $this->hasOne(Role::class, 'id', 'role');
+  }
 
   public function profile()
   {
     $this->hasOne(Profile::class, 'id', 'profile_id');
+  }
+
+  public function order()
+  {
+    $this->hasOne(Order::class, 'user_id', 'id');
   }
 }

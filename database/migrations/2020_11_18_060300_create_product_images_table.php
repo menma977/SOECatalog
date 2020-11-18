@@ -18,6 +18,7 @@ class CreateProductImagesTable extends Migration
       $table->bigInteger('product_id');
       $table->text('file');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
