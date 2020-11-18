@@ -29,7 +29,6 @@ class CreateOrdersTable extends Migration
       $table->string('payment_state')->nullable();
       $table->string('email')->nullable();
       $table->text('special_instructions')->nullable();
-      $table->text('currency')->nullable();
       $table->string('last_ip_address')->nullable();
       $table->decimal('shipment_total', 10, 2)->default(0.00);
       $table->decimal('promo_total', 10, 2)->default(0.00)->nullable();

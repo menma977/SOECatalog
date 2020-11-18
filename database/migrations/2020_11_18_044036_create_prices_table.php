@@ -17,7 +17,6 @@ class CreatePricesTable extends Migration
       $table->id();
       $table->bigInteger('product_id')->index();
       $table->decimal('amount', 10, 2);
-      $table->string('currency')->index();
       $table->timestamps();
       $table->softDeletes();
     });

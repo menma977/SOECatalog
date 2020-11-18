@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer id
  * @property integer product_id
  * @property integer amount
- * @property string currency
  * @property string created_at
  * @property string updated_at
  */
@@ -28,7 +27,6 @@ class Price extends Model
   protected $fillable = [
     'product_id',
     'amount',
-    'currency',
     'created_at',
     'updated_at',
   ];

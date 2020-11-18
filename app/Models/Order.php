@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string payment_state
  * @property string email
  * @property string special_instructions
- * @property string currency
  * @property string last_ip_address
  * @property integer shipment_total
  * @property integer promo_total
@@ -58,7 +57,6 @@ class Order extends Model
     'payment_state',
     'email',
     'special_instructions',
-    'currency',
     'last_ip_address',
     'shipment_total',
     'promo_total',
