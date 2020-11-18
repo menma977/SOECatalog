@@ -19,6 +19,7 @@ class CreateProfilesTable extends Migration
       $table->string('last_name');
       $table->text('address');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
