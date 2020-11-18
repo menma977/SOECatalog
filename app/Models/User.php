@@ -12,11 +12,13 @@ use Laravel\Passport\HasApiTokens;
  * Class User
  * @package App\Models
  * @property integer id
- * @property string name
+ * @property string email
  * @property string username
  * @property string password
  * @property string avatar
  * @property string phone
+ * @property integer profile_id
+ * @property boolean suspended
  */
 class User extends Authenticatable
 {
@@ -28,11 +30,12 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-    'name',
+    'email',
     'username',
     'password',
     'avatar',
     'phone',
+    'suspended',
   ];
 
   /**
@@ -41,6 +44,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
+    'profile_id',
     'password',
     'remember_token',
   ];
@@ -53,4 +57,10 @@ class User extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+
+  public function profile()
+  {
+    $this->hasOne(Profile::class, 'id', 'profile_id');
+  }
 }
