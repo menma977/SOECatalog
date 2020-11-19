@@ -18,17 +18,17 @@ class ProductController extends Controller
    */
   public function index()
   {
-    echo User::find(1)->role;
-    echo "<hr/>";
-    echo User::find(1)->profile;
-    echo "<hr/>";
-    echo User::all();
-    echo "<hr/>";
-    echo Profile::all();
-    echo "<hr/>";
-    echo Role::all();
-    echo "<hr/>";
-//    return view('welcome');
+//    echo User::find(1)->role;
+//    echo "<hr/>";
+//    echo User::find(1)->profile;
+//    echo "<hr/>";
+//    echo User::all();
+//    echo "<hr/>";
+//    echo Profile::all();
+//    echo "<hr/>";
+//    echo Role::all();
+//    echo "<hr/>";
+    return view('welcome');
   }
 
   /**
