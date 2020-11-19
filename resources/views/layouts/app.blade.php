@@ -27,11 +27,11 @@
 <body class="sidebar-mini">
 <div id="app" class="wrapper">
   <!-- header -->
-  <x-header-layout/>
+  <x-header/>
   <!-- /.header -->
 
   <!-- sidebar -->
-  <x-sidebar-layout/>
+  <x-side-bar/>
   <!-- /sidebar -->
 
   <div class="content-wrapper">
@@ -50,7 +50,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 0.0.1 BETA
     </div>
-    <strong>Copyright &copy; 2020 <a href="#">DOGE Boost</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="#">SEO Catalog</a>.</strong> All rights reserved.
   </footer>
 
 </div>
