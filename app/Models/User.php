@@ -21,6 +21,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string phone
  * @property integer profile_id
  * @property boolean suspended
+ * @property string email_verified_at
  * @property string created_at
  * @property string updated_at
  */

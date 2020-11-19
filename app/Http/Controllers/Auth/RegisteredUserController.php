@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -36,16 +37,31 @@ class RegisteredUserController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'name' => 'required|string|max:255',
+      'first_name' => 'required|string|max:255',
+      'last_name' => 'required|string|max:255',
       'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|confirmed|min:8',
+      'phone' => 'required|string|max:255|unique:users',
+      'username' => 'required|string|max:255|unique:users',
+      'password' => 'required|string|confirmed|min:6',
+      'address' => 'required|string|min:10',
     ]);
 
-    Auth::login($user = User::create([
-      'name' => $request->name,
-      'email' => $request->email,
-      'password' => Hash::make($request->password),
-    ]));
+    $profile = new Profile();
+    $profile->first_name = $request->first_name;
+    $profile->last_name = $request->last_name;
+    $profile->address = $request->address;
+    $profile->save();
+
+    $user = new User();
+    $user->profile_id = $profile->id;
+    $user->role_id = 3;
+    $user->username = $request->username;
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
+    $user->phone = preg_replace("/^62/", "0", $request->phone);
+    $user->save();
+
+    Auth::login($user);
 
     event(new Registered($user));
 
