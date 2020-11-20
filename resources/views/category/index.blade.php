@@ -39,8 +39,14 @@
               </div>
             </div>
             <div class="card-footer">
-              <button id="_cancel" type="button" class="btn btn-block bg-pink btn-sm elevation-2">Cancel</button>
-              <button type="submit" class="btn btn-block bg-pink btn-sm elevation-2">Submit</button>
+              <div class="row">
+                <div class="col-md-6">
+                  <button id="_cancel" type="button" class="btn btn-block bg-pink btn-sm elevation-2">Cancel</button>
+                </div>
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-block bg-pink btn-sm elevation-2">Submit</button>
+                </div>
+              </div>
             </div>
           </div>
         </form>
