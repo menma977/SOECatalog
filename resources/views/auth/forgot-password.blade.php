@@ -8,7 +8,9 @@
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg text-xs">
-          <b>Forgot your password?</b> No problem.<br/>Just let us know your <b>email address</b> and we will <b>email</b> you a <b>password reset link</b> that will allow you to choose a new one.
+          <b>Forgot your password?</b> No problem.
+          <br/>
+          Just let us know your <b>email address</b> and we will <b>email</b> you a <b>password reset link</b> that will allow you to choose a new one.
         </p>
         <form action="{{ route('password.email') }}" method="post">
           @csrf

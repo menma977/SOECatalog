@@ -24,7 +24,7 @@
   <link href="{{ url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}" rel="stylesheet">
   @yield('addCss')
 </head>
-<body class="sidebar-mini">
+<body class="sidebar-mini accent-pink sidebar-collapse">
 <div id="app" class="wrapper">
   <!-- header -->
   <x-header/>
