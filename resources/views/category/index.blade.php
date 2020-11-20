@@ -40,10 +40,10 @@
             </div>
             <div class="card-footer">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-1">
                   <button id="_cancel" type="button" class="btn btn-block bg-pink btn-sm elevation-2">Cancel</button>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-1">
                   <button type="submit" class="btn btn-block bg-pink btn-sm elevation-2">Submit</button>
                 </div>
               </div>
