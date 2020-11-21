@@ -34,6 +34,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('category.index') }}" class="nav-link {{ request()->is(['category', 'category/*']) ? 'active' : '' }}">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>
+              Payment Methods
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link">
             <i class="nav-icon fas fa-power-off"></i>
             <p>
