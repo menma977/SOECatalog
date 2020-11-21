@@ -27,7 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::group(["prefix" => "category", "as" => "category."], function () {
     Route::get('', [CategoryController::class, 'index'])->name('index');
     Route::get('show/{data?}', [CategoryController::class, 'show'])->name('show');
-    Route::get('store', [CategoryController::class, 'store'])->name('store');
-    Route::get('update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::post('store', [CategoryController::class, 'store'])->name('store');
+    Route::post('update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
   });
 });
