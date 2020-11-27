@@ -34,7 +34,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('category.index') }}" class="nav-link {{ request()->is(['category', 'category/*']) ? 'active' : '' }}">
+          <a href="{{ route('payment.method.index') }}" class="nav-link {{ request()->is(['payment/method', 'payment/method/*']) ? 'active' : '' }}">
             <i class="nav-icon fas fa-credit-card"></i>
             <p>
               Payment Methods

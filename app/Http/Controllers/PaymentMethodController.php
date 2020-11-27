@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentMethod;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -40,7 +42,8 @@ class PaymentMethodController extends Controller
   public function store(Request $request)
   {
     $this->validate($request, [
-      'name' => 'required|min:1|string|unique:categories,name',
+      'type' => 'required|min:1|string',
+      'name' => 'required|min:1|string',
       'description' => 'required|min:10|string'
     ]);
 
@@ -56,34 +59,58 @@ class PaymentMethodController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param PaymentMethod $paymentMethod
-   * @return Response
+   * @param string $data
+   * @return JsonResponse|Response
    */
-  public function show(PaymentMethod $paymentMethod)
+  public function show($data = "")
   {
-    //
+    if ($data) {
+      $this->listPaymentMethod = PaymentMethod::where('name', 'like', '%' . $data . '%')->get();
+    }
+
+    $this->listPaymentMethod->map(function ($item) {
+      $item->date = Carbon::parse($item->created_at)->format('d/M/Y');
+    });
+
+    return response()->json($this->listPaymentMethod, 200);
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param PaymentMethod $paymentMethod
-   * @return Response
+   * @param $id
+   * @return RedirectResponse|Response
+   * @throws ValidationException
    */
-  public function update(Request $request, PaymentMethod $paymentMethod)
+  public function update(Request $request, $id)
   {
-    //
+    $this->validate($request, [
+      'type' => 'required|min:1|string',
+      'name' => 'required|min:1|string',
+      'description' => 'required|min:10|string'
+    ]);
+
+    $paymentMethod = PaymentMethod::find($id);
+    $paymentMethod->type = $request->type;
+    $paymentMethod->name = $request->name;
+    $paymentMethod->description = $request->description;
+    $paymentMethod->save();
+
+    return redirect()->back()->with('message', "$request->name has been edit");
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param PaymentMethod $paymentMethod
-   * @return Response
+   * @param $id
+   * @return RedirectResponse|Response
    */
-  public function destroy(PaymentMethod $paymentMethod)
+  public function destroy($id)
   {
-    //
+    $paymentMethod = PaymentMethod::find($id);
+    PaymentMethod::destroy($id);
+
+    return redirect()->back()->with('message', "$paymentMethod->name has been delete");
   }
 }

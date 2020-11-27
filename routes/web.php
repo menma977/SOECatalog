@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
   });
 
-  Route::group(["prefix" => "payment/method", "as" => "payment.method"], function () {
+  Route::group(["prefix" => "payment/method/", "as" => "payment.method."], function () {
     Route::get('', [PaymentMethodController::class, 'index'])->name('index');
     Route::get('show/{data?}', [PaymentMethodController::class, 'show'])->name('show');
     Route::post('store', [PaymentMethodController::class, 'store'])->name('store');

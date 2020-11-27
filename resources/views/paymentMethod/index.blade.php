@@ -18,11 +18,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="_up" action="{{ route('category.store') }}" method="post">
+        <form id="_up" action="{{ route('payment.method.store') }}" method="post">
           @csrf
           <div id="card" class="card bg-pink @error('name') @else collapsed-card @enderror elevation-3">
             <div class="card-header">
-              <h3 class="card-title">Create Category</h3>
+              <h3 class="card-title">Create Payment Method</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                 </button>
@@ -30,13 +30,17 @@
             </div>
             <div class="card-body">
               <div class="form-group">
+                <label for="_type">Type</label>
+                <input type="text" class="form-control @error('type') is-invalid @enderror" id="_type" name="type" placeholder="Enter type" value="{{ old('type') }}">
+              </div>
+              <div class="form-group">
                 <label for="_name">Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="_name" name="name" placeholder="Enter name" value="{{ old('name') }}">
               </div>
               <div class="form-group">
                 <label for="_description">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="_description" name="description" rows="4"
-                          placeholder="Enter description ...">{{ old('description') }}</textarea>
+                          placeholder="Enter description ...">{!! old('description') !!}</textarea>
               </div>
             </div>
             <div class="card-footer">
@@ -70,6 +74,7 @@
               <thead>
               <tr>
                 <th style="width: 5%">ID</th>
+                <th style="width: 5%">Type</th>
                 <th style="width: 20%">Name</th>
                 <th style="width: 80%">Description</th>
                 <th style="width: 50%">Date</th>
@@ -79,13 +84,14 @@
               <template id="template_row">
                 <tr class="logData">
                   <td style="width: 5%" class="id"></td>
+                  <td style="width: 20%" class="type"></td>
                   <td style="width: 20%" class="name"></td>
                   <td style="width: 80%" class="description"></td>
                   <td style="width: 50%" class="date"></td>
                   <td style="width: 50%">
                     <div class="btn-group">
                       <button type="button" class="btn btn-outline-warning edit">Edit</button>
-                      <a href="{{ route('category.delete', '#id#') }}" class="delete">
+                      <a href="{{ route('payment.method.delete', '#id#') }}" class="delete">
                         <button type="button" class="btn btn-outline-danger">Delete</button>
                       </a>
                     </div>
@@ -110,11 +116,12 @@
 
       $(document).on("click", ".edit", function () {
         let parent = $(this).parents('.logData');
-        const url = "{{ route('category.update', '#id') }}".replace('#id', parent.find('.id').html());
+        const url = "{{ route('payment.method.update', '#id') }}".replace('#id', parent.find('.id').html());
         if ($('#card').hasClass('collapsed-card')) {
           $("[data-card-widget='collapse']").click();
         }
         $('#_up').attr('action', url);
+        $('#_type').attr('value', parent.find('.type').html());
         $('#_name').attr('value', parent.find('.name').html());
         $('#_name').focus();
         $('#_description').html(parent.find('.description').html());
@@ -124,7 +131,8 @@
         if (!$('#card').hasClass('collapsed-card')) {
           $("[data-card-widget='collapse']").click();
         }
-        $('#_up').attr('action', "{{ route('category.store') }}");
+        $('#_up').attr('action', "{{ route('payment.method.store') }}");
+        $('#_type').attr('value', '');
         $('#_name').attr('value', '');
         $('#_name').focus();
         $('#_description').html('');
@@ -136,7 +144,7 @@
         e.preventDefault();
       }
       const filter = document.getElementById('_filter').value;
-      fetch("{{ route('category.show', '##filter##') }}".replace("##filter##", filter), {
+      fetch("{{ route('payment.method.show', '##filter##') }}".replace("##filter##", filter), {
         method: 'GET',
         headers: {
           Accept: "application/json",
@@ -149,6 +157,7 @@
         for (let data of dataset) {
           const newRow = row.cloneNode(true);
           newRow.querySelector(".id").innerText = data.id;
+          newRow.querySelector(".type").innerText = data.type;
           newRow.querySelector(".name").innerText = data.name;
           newRow.querySelector(".description").innerText = data.description;
           newRow.querySelector(".date").innerText = data.date;
